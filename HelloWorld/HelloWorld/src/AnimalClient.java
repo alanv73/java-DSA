@@ -6,7 +6,7 @@ public class AnimalClient {
 
 		// Create a new animal object
 		Animal myAnimal = new Animal();
-		myAnimal.name="tac";
+		myAnimal.name="cat";
 		System.out.println("Running AnimalClient.java");
 		System.out.println(myAnimal.name);
 	}
