@@ -45,4 +45,23 @@ public class BankAccount {
 	
 	// member methods
 	
+	// total all transactions for this account
+	public double getTotalBalanceFromTransactions() {
+		
+		/* 1. for loop
+		// loop through and total
+		for (int i = 0; i < transactions.size(); i++) {
+			
+			balance += transactions.get(i).getAmount();
+		}
+		*/
+		
+		// 2. shorthand for loop (foreach equivalent)
+		for(Transaction transaction : getTransactions() ) {
+			balance += transaction.getAmount();
+		}
+		
+		return balance;
+	}
+	
 }

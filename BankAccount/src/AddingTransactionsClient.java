@@ -16,6 +16,15 @@ public class AddingTransactionsClient {
 		double firstTransactionAmount = myBankAccount.getTransactions().get(0).getAmount();
 		
 		System.out.println("firstTransactionAmount: " + firstTransactionAmount);
+		
+		// add a second transaction
+		myBankAccount.getTransactions().add(new Transaction());
+		// set its value (ideally would be done in a constructor that takes the value
+		myBankAccount.getTransactions().get(1).setAmount(34.56);
+		
+		// total and display balance
+		myBankAccount.getTotalBalanceFromTransactions();
+		System.out.println("myBankAccount.getBalance(): " + myBankAccount.getBalance());
 	}
 
 }
