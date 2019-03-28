@@ -14,6 +14,7 @@ public class BinToDecClient {
         System.out.println( "Binary number " + binaryNumber + 
     		" conversion in " + "Decimal number is " +
     		obj.BinToDec(binaryNumber));
+        scan.close();
 	}
 
 }
