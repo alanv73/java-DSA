@@ -2,8 +2,8 @@
 public class Archer extends Player {
 
 	// data members
-	private int aimAbility;
-
+	private byte aimAbility;
+	
 	// accessors/mutators
 	public int getAimAbility() {
 		return aimAbility;
@@ -11,7 +11,7 @@ public class Archer extends Player {
 
 	public void setAimAbility(int aimAbility) {
 		if (aimAbility >= 0 && aimAbility <= 100) {
-			this.aimAbility = aimAbility;
+			this.aimAbility = (byte) aimAbility;
 		}
 	}
 

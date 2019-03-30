@@ -2,7 +2,7 @@
 public class Mage extends Player {
 
 	// member methods
-	private int magicPoints;
+	private byte magicPoints;
 
 	// accessors/mutators
 	public int getMagicPoints() {
@@ -11,7 +11,7 @@ public class Mage extends Player {
 
 	public void setMagicPoints(int magicPoints) {
 		if (magicPoints >= 0 && magicPoints <= 100) {
-			this.magicPoints = magicPoints;
+			this.magicPoints = (byte) magicPoints;
 		}
 	}
 
@@ -19,8 +19,8 @@ public class Mage extends Player {
 	@Override
 	public void attack() {
 		// TODO Auto-generated method stub
-		System.out.println("Mage attacking...");
 		castSpell();
+		System.out.println("Mage attacking...");
 	}
 	
 	public void castSpell() {
