@@ -2,16 +2,17 @@
 public class Archer extends Player {
 
 	// data members
-	private byte aimAbility;
+	private int aimAbility;
 
 	// accessors/mutators
-	
-	public byte getAimAbility() {
+	public int getAimAbility() {
 		return aimAbility;
 	}
 
-	public void setAimAbility(byte aimAbility) {
-		this.aimAbility = aimAbility;
+	public void setAimAbility(int aimAbility) {
+		if (aimAbility >= 0 && aimAbility <= 100) {
+			this.aimAbility = aimAbility;
+		}
 	}
 
 	// member methods
