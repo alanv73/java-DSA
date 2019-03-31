@@ -29,10 +29,14 @@ public abstract class Player {
 	// static methods
 	public static void LaunchOffensive(ArrayList<Player> players) {
 		for (Player player : players) {
+			
 			if(player instanceof Archer) {
 				((Archer)player).aim();
+			} else {
+				((Mage)player).castSpell();
 			}
-			player.attack();
+			
+//			player.attack();
 		}
 	}
 }
