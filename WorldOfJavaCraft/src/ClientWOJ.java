@@ -11,7 +11,7 @@ public class ClientWOJ {
 		player1.setHitPoints(100);
 		player1.setDefensePoints(50);
 		
-		((Archer)player1).setAimAbility(100);
+//		((Archer)player1).setAimAbility(100);
 
 		((Archer)player1).aim();
 		((Archer)player1).attack();

@@ -2,7 +2,7 @@
 public class Archer extends Player {
 
 	// data members
-	private byte aimAbility;
+	private byte aimAbility = 80;
 	
 	// accessors/mutators
 	public int getAimAbility() {
