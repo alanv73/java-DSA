@@ -17,6 +17,8 @@ public class GuessGame {
 		boolean p2isRight = false;
 		boolean p3isRight = false;
 		int targetNumber = (int) (Math.random() * 10);
+		int guesses = 0;
+		
 		System.out.println("I'm thinking of a number between 0 and 9...");
 		while(true) {
 			System.out.println("Number to guess is " + targetNumber);
@@ -24,6 +26,8 @@ public class GuessGame {
 			p1.guess();
 			p2.guess();
 			p3.guess();
+			
+			guesses++;
 
 			guessp1 = p1.number;
 			System.out.println("Player one guessed " + guessp1);
@@ -44,7 +48,7 @@ public class GuessGame {
 
 			if (p1isRight || p2isRight || p3isRight)
 			{
-				System.out.println("We have a winner!");
+				System.out.println("We have a winner in " + guesses + " guesses!");
 				System.out.println("Player one got it right? " + p1isRight);
 				System.out.println("Player two got it right? " + p2isRight);
 				System.out.println("Player three got it right? " + p3isRight);
