@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 
 public abstract class Player {
 
@@ -26,17 +25,10 @@ public abstract class Player {
 	// abstract methods
 	public abstract void attack();
 	
-	// static methods
-	public static void LaunchOffensive(ArrayList<Player> players) {
-		for (Player player : players) {
-			
-			if(player instanceof Archer) {
-				((Archer)player).aim();
-			} else {
-				((Mage)player).castSpell();
-			}
-			
-//			player.attack();
-		}
+	// member methods
+	public String toString() {
+		return "hitPoints: " + this.hitPoints + 
+				"\ndefensePoints: " + this.defensePoints;
 	}
+	
 }

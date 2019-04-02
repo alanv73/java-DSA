@@ -2,7 +2,14 @@
 public class Archer extends Player {
 
 	// data members
-	private byte aimAbility = 80;
+	private int aimAbility;
+	
+	// constructor
+	public Archer(int aimAbility) {
+		setAimAbility(aimAbility);
+		// same as this.setAimAbility(aimAbility);
+	}
+	
 	
 	// accessors/mutators
 	public int getAimAbility() {
@@ -11,7 +18,9 @@ public class Archer extends Player {
 
 	public void setAimAbility(int aimAbility) {
 		if (aimAbility >= 0 && aimAbility <= 100) {
-			this.aimAbility = (byte) aimAbility;
+			this.aimAbility = aimAbility;
+		} else {
+			// leave at 0? or assign default value?
 		}
 	}
 
@@ -24,6 +33,11 @@ public class Archer extends Player {
 	
 	public void aim() {
 		System.out.println("Archer focusing...");
+	}
+	
+	public String toString() {
+		return super.toString() + "\n" +
+				"aimAbility: " + this.aimAbility;
 	}
 	
 }

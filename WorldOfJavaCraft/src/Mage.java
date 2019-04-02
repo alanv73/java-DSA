@@ -2,8 +2,13 @@
 public class Mage extends Player {
 
 	// member methods
-	private byte magicPoints;
+	private int magicPoints;
 
+	// constructor
+	public Mage(int magicPoints) {
+		setMagicPoints(magicPoints);
+	}
+	
 	// accessors/mutators
 	public int getMagicPoints() {
 		return magicPoints;
@@ -11,7 +16,7 @@ public class Mage extends Player {
 
 	public void setMagicPoints(int magicPoints) {
 		if (magicPoints >= 0 && magicPoints <= 100) {
-			this.magicPoints = (byte) magicPoints;
+			this.magicPoints = magicPoints;
 		}
 	}
 
@@ -25,6 +30,11 @@ public class Mage extends Player {
 	
 	public void castSpell() {
 		System.out.println("Mage casting a spell...");
+	}
+	
+	public String toString() {
+		return super.toString() + "\n" +
+				"magicPoints: " + this.magicPoints;
 	}
 	
 }
