@@ -5,7 +5,8 @@ public class Mage extends Player {
 	private int magicPoints;
 
 	// constructor
-	public Mage(int magicPoints) {
+	public Mage(int hitPoints, int defensePoints, int magicPoints) {
+		super(hitPoints, defensePoints);
 		setMagicPoints(magicPoints);
 	}
 	

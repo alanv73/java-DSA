@@ -5,7 +5,8 @@ public class Archer extends Player {
 	private int aimAbility;
 	
 	// constructor
-	public Archer(int aimAbility) {
+	public Archer(int hitPoints, int defensePoints, int aimAbility) {
+		super(hitPoints, defensePoints);
 		setAimAbility(aimAbility);
 		// same as this.setAimAbility(aimAbility);
 	}

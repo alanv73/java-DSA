@@ -5,6 +5,12 @@ public abstract class Player {
 	private int hitPoints;
 	private int defensePoints;
 	
+	// constructors
+	public Player(int hitPoints, int defensePoints) {
+		this.hitPoints = hitPoints;
+		this.defensePoints = defensePoints;
+	}
+	
 	// accessors/mutators
 	public int getHitPoints() {
 		return hitPoints;
