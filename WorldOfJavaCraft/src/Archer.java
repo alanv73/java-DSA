@@ -8,7 +8,6 @@ public class Archer extends Player {
 	public Archer(int hitPoints, int defensePoints, int aimAbility) {
 		super(hitPoints, defensePoints);
 		setAimAbility(aimAbility);
-		// same as this.setAimAbility(aimAbility);
 	}
 	
 	
@@ -20,8 +19,6 @@ public class Archer extends Player {
 	public void setAimAbility(int aimAbility) {
 		if (aimAbility >= 0 && aimAbility <= 100) {
 			this.aimAbility = aimAbility;
-		} else {
-			// leave at 0? or assign default value?
 		}
 	}
 

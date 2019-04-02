@@ -2,24 +2,23 @@
 public class ClientWOJ {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 
-		// ( hitPoints, defensePoints, aimAbility )
+		// Archer constructor(hitPoints, defensePoints, aimAbility)
 		Player player1 = new Archer(100, 50, 80);
 		
+		// change data members using mutators
 		player1.setHitPoints(99);
 		player1.setDefensePoints(49);
+		((Archer)player1).setAimAbility(79);
 
-		System.out.println("Archer:\n" + player1.toString());
-		
+		// convert to Archer to call aim() & attack() methods
 		((Archer)player1).aim();
-		((Archer)player1).attack();
+		player1.attack();
 		
-		// ( hitPoints, defensePoints, aimAbility )
+		// Mage constructor(hitPoints, defensePoints, magicPoints)
 		Player player2 = new Mage(50, 100, 75);
 
-		System.out.println("Mage:\n" + player2.toString());
-
+		// player2 (Mage) attack() method calls castSpell() method
 		player2.attack();
 	}
 
