@@ -1,5 +1,5 @@
 
-public abstract class Player {
+public abstract class Player implements Attacker {
 
 	// data members
 	private int hitPoints;
@@ -29,7 +29,7 @@ public abstract class Player {
 	}
 
 	// abstract methods
-	public abstract void attack();
+//	public abstract void attack();
 	
 	// member methods
 	public String toString() {
