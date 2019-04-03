@@ -5,12 +5,14 @@ public class GuessGame {
 	Player p1;
 	Player p2;
 	Player p3;
-   
+	ArrayList<Integer> guessLog = new ArrayList<Integer>();
+
 	public void startGame() {
     
-		p1 = new Player();
-		p2 = new Player();
-		p3 = new Player();
+		p1 = new Player("Player 1");
+		p2 = new Player("Player 2");
+		p3 = new Player("Player 3");
+
 		int guessp1 = 0;
 		int guessp2 = 0;
 		int guessp3 = 0;
@@ -18,16 +20,16 @@ public class GuessGame {
 		boolean p1isRight = false;
 		boolean p2isRight = false;
 		boolean p3isRight = false;
-		int targetNumber = (int) (Math.random() * 10);
+		int targetNumber = (int) (Math.random() * 20);
 		int guesses = 0;
 		
-		System.out.println("I'm thinking of a number between 0 and 9...");
+		System.out.println("I'm thinking of a number between 0 and 19...");
 		while(true) {
 			System.out.println("Number to guess is " + targetNumber);
 
-					p1.guess();
-					p2.guess();
-					p3.guess();
+					playerTurn(p1);
+					playerTurn(p2);
+					playerTurn(p3);
 				
 			guesses++;
 
@@ -63,4 +65,20 @@ public class GuessGame {
 			}
 		}
    }
+	
+	private void playerTurn(Player player) {
+		
+		boolean goodGuess = false;
+		
+		while(!goodGuess) {
+			player.guess();
+			if (!guessLog.contains(player.number)) {
+				goodGuess=true;
+				guessLog.add(player.number);
+//			} else {
+//				System.out.println("Duplicate");
+			}
+		}
+
+	}
 }
