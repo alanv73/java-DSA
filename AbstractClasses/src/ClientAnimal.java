@@ -16,6 +16,8 @@ public class ClientAnimal {
 		//Animal.OutputAnimalBehavior(animals);
 		
 		Animal.PerformAnimalBehavior(animals);
+		
+		
 	}
 
 	
