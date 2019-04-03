@@ -22,13 +22,6 @@ public class Archer extends Player {
 		}
 	}
 
-	// member methods
-	@Override
-	public void attack() {
-		// TODO Auto-generated method stub
-		System.out.println("Archer attacking...");
-	}
-	
 	public void aim() {
 		System.out.println("Archer focusing...");
 	}

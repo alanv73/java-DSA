@@ -26,7 +26,7 @@ public class Mage extends Player {
 	public void attack() {
 		// TODO Auto-generated method stub
 		castSpell();
-		System.out.println("Mage attacking...");
+		super.attack();
 	}
 	
 	public void castSpell() {

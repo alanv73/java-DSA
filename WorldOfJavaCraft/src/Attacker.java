@@ -1,6 +1,10 @@
 
 public interface Attacker {
 
-	public void attack();
+	void setAttackPower(int attackPower);
+	int getAttackPower();
 	
+	default public void attack() {
+		System.out.println("attacking with attack power " + getAttackPower() + "...");
+	}
 }
