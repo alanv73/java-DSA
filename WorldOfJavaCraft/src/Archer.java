@@ -27,8 +27,9 @@ public class Archer extends Player {
 	}
 	
 	public String toString() {
-		return super.toString() + "\n" +
-				"aimAbility: " + this.aimAbility;
+		return "Archer:\n" + 
+				"aimAbility: " + this.aimAbility + "\n" + 
+				super.toString();
 	}
 	
 }

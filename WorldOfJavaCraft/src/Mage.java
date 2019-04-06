@@ -34,8 +34,9 @@ public class Mage extends Player {
 	}
 	
 	public String toString() {
-		return super.toString() + "\n" +
-				"magicPoints: " + this.magicPoints;
+		return "Mage:\n" + 
+				"magicPoints: " + this.magicPoints + "\n" +
+				super.toString();
 	}
 	
 }

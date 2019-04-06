@@ -4,7 +4,6 @@ public abstract class Player implements Attacker {
 	// data members
 	private int hitPoints;
 	private int defensePoints;
-	private int attackPower;
 	
 	// constructors
 	public Player(int hitPoints, int defensePoints) {
@@ -29,18 +28,10 @@ public abstract class Player implements Attacker {
 		this.defensePoints = defensePoints;
 	}
 	
-	public int getAttackPower() {
-		return attackPower;
-	}
-	
-	public void setAttackPower(int attackPower) {
-		this.attackPower = attackPower;
-	}
-
 	// member methods
 	public String toString() {
-		return "hitPoints: " + this.hitPoints + 
-				"\ndefensePoints: " + this.defensePoints;
+		return "hitPoints: " + this.hitPoints + "\n" + 
+				"defensePoints: " + this.defensePoints;
 	}
 	
 }
