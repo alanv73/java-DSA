@@ -106,7 +106,7 @@ class OrdArray {
 	   }
 	   
 	   while (true) {
-		   
+		   // TODO find value and delete it
 	   }
    }
    //-----------------------------------------------------------
