@@ -37,7 +37,7 @@ class OrdArray {
       }  // end while
    }  // end find()
    //-----------------------------------------------------------
-   private void oldInsert(long value)    // put element into array
+   public void oldInsert(long value)    // put element into array
    {
       int j;
       for(j=0; j<nElems; j++)        // find where it goes
@@ -59,15 +59,19 @@ class OrdArray {
 			   break;
 		   }
 		   mid = (low + hi)/2;
-		   if (low == hi) {
+		   if (low > hi) {
+			   break;
+		   } else if (low == hi) {
 			   break;
 		   } else if (a[mid] == value) {
 			   break;
-		   } else if (a[mid] < value) {
-			   low = mid + 1;
 		   } else {
-			   hi = mid - 1;
-		   } // end if
+			   if (a[mid] < value) {
+				   low = mid + 1;
+			   } else {
+				   hi = mid - 1;
+			   } // end if
+		   } // end else
 	   } // end while
 	   if (a[mid] < value) {
 		   mid++;
@@ -75,6 +79,7 @@ class OrdArray {
 		   System.out.println("duplicate.. " + value + " not added.");
 		   return;
 	   } 
+	   
 	   int i;
 	   for (i = nElems; i > mid; i--) {
 		   a[i] = a[i - 1];
@@ -83,7 +88,7 @@ class OrdArray {
 	   nElems++;
    } // end insert()
    //-----------------------------------------------------------
-   private boolean oldDelete(long value)
+   public boolean oldDelete(long value)
    {
       int j = find(value);
       if(j==nElems)                  // can't find it
@@ -100,15 +105,33 @@ class OrdArray {
    public boolean delete(long value) {
 	   int low = 0;
 	   int hi = nElems - 1;
+	   int targetElement = nElems;
 	   
 	   if (nElems == 0) {
 		   return false;
 	   }
 	   
 	   while (true) {
-		   // TODO find value and delete it
-	   }
-   }
+		   int mid = (low + hi)/2;
+		   
+		   if(a[mid] == value) {
+			   targetElement = mid;
+			   break;
+		   } else {
+			   if (a[mid] < value) {
+				   low = mid + 1;
+			   } else {
+				   hi = mid - 1;
+			   }
+		   } // else
+	   } // end while
+	   
+	   for (int i = targetElement; i < nElems; i++) {
+		   a[i] = a[i + 1];
+	   } // end for
+	   nElems--;
+	   return true;
+   } // end delete
    //-----------------------------------------------------------
    public void display()             // displays array contents
    {
@@ -117,4 +140,39 @@ class OrdArray {
       System.out.println("");
    }
    //-----------------------------------------------------------
+   public static OrdArray merge(OrdArray input1, OrdArray input2) {
+	   int leftSize = input1.nElems;
+	   int rightSize = input2.nElems;
+	   
+	   OrdArray output = new OrdArray((leftSize + rightSize) * 2);
+	   
+	   int l = 0, r = 0, i = 0;
+	   
+	   while (l < leftSize && r < rightSize) {
+		   if (input1.a[l] < input2.a[r]) {
+			   output.a[i] = input1.a[l];
+			   l++; i++;
+		   } else {
+			   output.a[i] = input2.a[r];
+			   r++; i++;
+		   }
+	   }
+	   
+	   if (l < leftSize) {
+		   for (int j = l; j < leftSize; j++) {
+			   output.a[i] = input1.a[j];
+			   i++;
+		   }
+	   } else {
+		   for (int j = r; j < rightSize; j++) {
+			   output.a[i] = input2.a[j];
+			   i++;
+		   }
+	   }
+	   
+	   output.nElems = leftSize + rightSize;
+	   
+	   return output;
+	   
+   } // end merge()
 }  // end class OrdArray
