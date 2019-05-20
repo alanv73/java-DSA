@@ -26,6 +26,41 @@ import java.util.Hashtable;
  * 
  ***************************************************************************************/
 
+/***************************************************************************************
+ * 
+ * Chapter 3 Experiments 1 - 3
+ * 
+ * using Intel Core i5 3470 @ 3.20 GHz / 16GB RAM
+ * 
+ * bubbleSort 140,000 elements of random unsorted data......    29.853 s
+ * selectionSort 140,000 elements of random unsorted data...     8.549 s
+ * insertionSort 140,000 elements of random unsorted data...     7.761 s
+ * 
+ * bubbleSort 140,000 elements of reverse sorted data.......    15.648 s
+ * selectionSort 140,000 elements of reverse sorted data....     9.318 s
+ * insertionSort 140,000 elements of reverse sorted data....    15.510 s
+ * 
+ * bubbleSort 140,000 elements of forward sorted data.......     6.203 s
+ * selectionSort 140,000 elements of forward sorted data....     7.734 s
+ * insertionSort 140,000 elements of forward sorted data....     0.001 s
+ *
+ *
+ * using Intel Core i7 7700HQ @ 2.80 GHz / 16GB RAM
+ * 
+ * bubbleSort 140,000 elements of random unsorted data......    34.401 s
+ * selectionSort 140,000 elements of random unsorted data...     6.648 s
+ * insertionSort 140,000 elements of random unsorted data...     6.234 s
+ * 
+ * bubbleSort 140,000 elements of reverse sorted data.......    16.600 s
+ * selectionSort 140,000 elements of reverse sorted data....    10.313 s
+ * insertionSort 140,000 elements of reverse sorted data....    12.454 s
+ * 
+ * bubbleSort 140,000 elements of forward sorted data.......     8.834 s
+ * selectionSort 140,000 elements of forward sorted data....     6.195 s
+ * insertionSort 140,000 elements of forward sorted data....     0.000 s
+ * 
+ ****************************************************************************************/
+
 class Sort {
    
 	static enum sortMethod {bubbleSort, selectionSort, insertionSort}; 
@@ -38,9 +73,9 @@ class Sort {
 	static {
 		
 		output = new Hashtable<arrayType, String>();
-		output.put(arrayType.random, "random unsorted data...");
-		output.put(arrayType.reversed, "reverse sorted data....");
-		output.put(arrayType.sorted, "forward sorted data....");
+		output.put(arrayType.random, "random unsorted data");
+		output.put(arrayType.reversed, "reverse sorted data");
+		output.put(arrayType.sorted, "forward sorted data");
 
 	}
 //--------------------------------------------------------------
@@ -145,18 +180,15 @@ class Sort {
 	   }  // end for
    }  // end insertionSort()
  //--------------------------------------------------------------
-   public static void sortTimer(Sort arr, sortMethod sort, arrayType aType) {
+   public static void sortTimer(Sort arr, sortMethod sort, arrayType typeOfArray) {
 
 	   timerCounter++;
 	   
-	   String trailer = output.get(aType); // choose ending phrase
+	   String label = String.format("%s %,d elements of %s", sort, arr.a.length, output.get(typeOfArray));
 	   
-	   // column adjust ending phrase
-	   if (sort == sortMethod.bubbleSort) { 
-		   trailer += "...";
-	   }
+	   label = rightPad(label, '.', 57);
 	   
-	   System.out.printf("%s %,d elements of %s", sort, arr.a.length, trailer);
+	   System.out.printf("%-57s", label);
 
 	   // start timer
 	   long start = System.currentTimeMillis(); 
@@ -167,10 +199,10 @@ class Sort {
 			   arr.bubbleSort();             	// bubble sort them
 			   break;
 		   case selectionSort:
-			   arr.selectionSort();            // bubble sort them
+			   arr.selectionSort();            // selection sort them
 			   break;
 		   case insertionSort:
-			   arr.insertionSort();            // bubble sort them
+			   arr.insertionSort();            // insertion sort them
 			   break;
 	   	}
 		
@@ -196,13 +228,25 @@ class Sort {
       a[two] = temp;
    }
 //--------------------------------------------------------------
+   private static String rightPad(String s, char p, int n) {
+	   
+	   int lengthDifference = n - s.length();
+	   
+	   for (int i = 0; i < lengthDifference; i++) {
+		
+		   s += p;
+	   }
+	   
+	   return s;
+   }
+ //--------------------------------------------------------------
 }  // end class Sort
 ////////////////////////////////////////////////////////////////
 class SortApp {
 	
    public static void main(String[] args) {
       
-	   int maxSize = 100000;            // array size
+	   int maxSize = 140000;            // array size 
 	   Sort arrB;                 		// reference to array for Bubble sort
 	   Sort revArrB;					// array of reversed elements for Bubble sort
 	   Sort sortedArrB;					// array of sorted elements for Bubble sort
@@ -249,21 +293,38 @@ class SortApp {
 
 	   //arr.display();                // display items
 
-	   // perform bubble sort on the 3 arrays
-	   Sort.sortTimer(arrB, Sort.sortMethod.bubbleSort, Sort.arrayType.random);
-	   Sort.sortTimer(revArrB, Sort.sortMethod.bubbleSort, Sort.arrayType.reversed);
-	   Sort.sortTimer(sortedArrB, Sort.sortMethod.bubbleSort, Sort.arrayType.sorted);
+//	   // different order
+//	   // perform bubble sort on the 3 bubble sort arrays
+//	   Sort.sortTimer(arrB, Sort.sortMethod.bubbleSort, Sort.arrayType.random);
+//	   Sort.sortTimer(revArrB, Sort.sortMethod.bubbleSort, Sort.arrayType.reversed);
+//	   Sort.sortTimer(sortedArrB, Sort.sortMethod.bubbleSort, Sort.arrayType.sorted);
+//
+//	   // perform selection sort on the 3 selection sort arrays
+//	   Sort.sortTimer(arrS, Sort.sortMethod.selectionSort, Sort.arrayType.random);
+//	   Sort.sortTimer(revArrS, Sort.sortMethod.selectionSort, Sort.arrayType.reversed);
+//	   Sort.sortTimer(sortedArrS, Sort.sortMethod.selectionSort, Sort.arrayType.sorted);
+//  
+//	   // perform insertion sort on the 3 insertion sort arrays
+//	   Sort.sortTimer(arrI, Sort.sortMethod.insertionSort, Sort.arrayType.random);
+//	   Sort.sortTimer(revArrI, Sort.sortMethod.insertionSort, Sort.arrayType.reversed);
+//	   Sort.sortTimer(sortedArrI, Sort.sortMethod.insertionSort, Sort.arrayType.sorted);
 
-	   // perform selection sort on the 3 arrays
+	   // perform the three sorts on the random arrays
+	   Sort.sortTimer(arrB, Sort.sortMethod.bubbleSort, Sort.arrayType.random);
 	   Sort.sortTimer(arrS, Sort.sortMethod.selectionSort, Sort.arrayType.random);
-	   Sort.sortTimer(revArrS, Sort.sortMethod.selectionSort, Sort.arrayType.reversed);
-	   Sort.sortTimer(sortedArrS, Sort.sortMethod.selectionSort, Sort.arrayType.sorted);
-  
-	   // perform insertion sort on the 3 arrays
 	   Sort.sortTimer(arrI, Sort.sortMethod.insertionSort, Sort.arrayType.random);
+
+
+	   // perform the three sorts on the reversed arrays
+	   Sort.sortTimer(revArrB, Sort.sortMethod.bubbleSort, Sort.arrayType.reversed);
+	   Sort.sortTimer(revArrS, Sort.sortMethod.selectionSort, Sort.arrayType.reversed);
 	   Sort.sortTimer(revArrI, Sort.sortMethod.insertionSort, Sort.arrayType.reversed);
-	   Sort.sortTimer(sortedArrI, Sort.sortMethod.insertionSort, Sort.arrayType.sorted);
   
+	   // perform the three sorts on the sorted arrays
+	   Sort.sortTimer(sortedArrB, Sort.sortMethod.bubbleSort, Sort.arrayType.sorted);
+	   Sort.sortTimer(sortedArrS, Sort.sortMethod.selectionSort, Sort.arrayType.sorted);
+	   Sort.sortTimer(sortedArrI, Sort.sortMethod.insertionSort, Sort.arrayType.sorted);
+
 	   //arr.display();                // display them again
 
    }  // end main()

@@ -4,14 +4,14 @@ public class ArrayClient {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		int[] myNumbers = new int[10];
-		int[] myEmptyArray = new int[10];
+		int[] myNumbers = new int[5];
+		int[] myEmptyArray;
 		
-		myNumbers[0] = 1;
-		myNumbers[1] = 2;
-		myNumbers[2] = 3;
-		myNumbers[3] = 4;
-		myNumbers[4] = 5;
+		myNumbers[0] = 2;
+		myNumbers[1] = 4;
+		myNumbers[2] = 6;
+		myNumbers[3] = 8;
+		myNumbers[4] = 10;
 
 		System.out.println("Original Array");
 		IntArray.PrintArray(myNumbers);
@@ -23,7 +23,7 @@ public class ArrayClient {
 		IntArray.PrintArray(myEmptyArray);
 		
 		System.out.println();
-		int numberToRemove = 3;
+		int numberToRemove = 6;
 		
 		myEmptyArray = IntArray.Remove(myNumbers, numberToRemove);
 

@@ -6,7 +6,7 @@ public class Client {
 	
 	public static void main(String[] args) {
 
-		int numberToGuess = 12;
+		int numberToGuess = 11;
 		boolean found = false;
 		boolean quit = false;
 		int guess = 0;
@@ -26,11 +26,15 @@ public class Client {
 					guess++;
 				}
 				catch(Exception e) {
-					number = 0;
-					quit = true;
+					if(!numberAsString.equals("Q") && !numberAsString.equals("q")) {
+						System.out.println("Invalid Guess.\n" + 
+								"Enter a number (1 - 100) " + 
+								"Q to Quit");
+					}
+					number = -1;
 				}
-				
-				System.out.println("number guessed is: " + number);
+				System.out.println("number guessed is: " + 
+						(number > 0 ? number : numberAsString));
 			
 				// Quit y/n:
 				if(numberAsString.equals("Q") || numberAsString.equals("q")) {
@@ -43,7 +47,7 @@ public class Client {
 					if (number == numberToGuess) {
 						found = true;
 					} 
-					else {
+					else if (number > 0) {
 						if (number < numberToGuess) {
 							System.out.println("Your guess is too low.");
 						} 
@@ -63,7 +67,10 @@ public class Client {
 			} // end while
 			
 			if (found) {
-				System.out.println("Number Found!");
+				System.out.println("You Win!");
+			}
+			else {
+				System.out.println("You lose!");
 			}
 			
 			System.out.println("numberToGuess was " + numberToGuess);
@@ -73,7 +80,12 @@ public class Client {
 			System.out.println(e.getMessage());
 		}
 		
-		System.out.println("Quit!");
+		if(quit) {
+			System.out.println("Quit!");
+		}
+		else {
+			System.out.println("End.");
+		}
 	}
 
 }
