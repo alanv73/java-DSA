@@ -4,12 +4,91 @@ public class NewSelectionSort {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-		int[] myArray = {6,4,9,2,7,5};
+//		int[] myArray = {6,4,9,2,7,5};
+//		int[] myArray = {3,7,2,5,1,7,7,8,6,9,4,0};
+		int[] myArray = {6,13,9,15,4,7,3,17,12,5,16,2};
+		System.out.println("starting array...");
 		PrintArray(myArray);
-		selectionSort(myArray);
+		System.out.println();
+//		selectionSort(myArray);
+//		insertionSort(myArray);
+		insertionSortChaz(myArray);
+		System.out.println("complete...");
+		PrintArray(myArray);
 
 	}
 
+	private static void insertionSort(int[] myArray) {
+		
+		
+		for (int i = 1; i < myArray.length; i++) {
+			
+			int j = i;
+			int num = myArray[i];
+			
+			System.out.printf("comparing %d at index %d with %d at index %d\n",
+					num, i, myArray[j - 1], j - 1);
+			
+			while (j > 0 && myArray[j - 1] >= num) {
+				
+				System.out.printf("moving %d from index %d to index %d\n", myArray[j - 1], j - 1, j);
+				myArray[j] = myArray[j - 1];
+				j--;
+			}
+			
+			if(j != i) {
+				
+				System.out.printf("inserting %d at index %d\n", num, j);
+				myArray[j] = num;
+			}
+			else {
+				
+				System.out.println("no moves made");
+			}
+			
+			PrintArray(myArray);
+			System.out.println();
+		}
+	}
+	
+	private static void insertionSortChaz(int[] myArray) {
+		
+		for (int j = 0; j < myArray.length - 1; j++) {
+			
+			int lowest = myArray[j];
+			int lowestIndex = j;
+			System.out.printf("lowest number is %d at index %d\n", lowest, lowestIndex);
+			
+			for (int i = j + 1; i < myArray.length; i++) {
+				
+				if (myArray[i] < lowest) {
+					lowest = myArray[i];
+					lowestIndex = i;
+					System.out.printf("new lowest number is %d at index %d\n", lowest, lowestIndex);
+				}
+			} // end i
+			
+			for (int k = lowestIndex; k > j; k--) {
+				
+				System.out.printf("shifting %d at index %d to index %d\n", myArray[k - 1], k - 1, k);
+				myArray[k] = myArray[k - 1];
+			} // end k
+			
+			if (j == lowestIndex) {
+				
+				System.out.printf("number %d is already sorted at index %d - no moves made\n\n", lowest, j);
+			}
+			else {
+
+				System.out.printf("inserting %d at index %d\n\n", lowest, j);
+				myArray[j] = lowest;
+			}
+			PrintArray(myArray);
+			System.out.println();
+			
+		} // end j
+	}
+	
 	private static void selectionSort(int[] myArray) {
 		// TODO Auto-generated method stub
 		
@@ -57,8 +136,9 @@ public class NewSelectionSort {
 	}
 
 	public static void PrintArray(int[] array) {
+		
 		for (int i = 0; i < array.length; i++) {
-			System.out.print(array[i] + " ");
+			System.out.printf("%d ", array[i]);
 		}
 		System.out.println();
 	}
