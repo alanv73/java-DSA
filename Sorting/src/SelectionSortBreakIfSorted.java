@@ -13,10 +13,13 @@ public class SelectionSortBreakIfSorted {
 
 	}
 
-	private static void selectionSort(int[] myArray) {
+	public static void selectionSort(int[] myArray) {
 		// TODO Auto-generated method stub
+
+		// selection sort break if sorted//
 		
-		
+		System.out.println("-Chaz's Selection Sort");
+
 		for (int i = 0; i < myArray.length - 1; i++) {
 			
 			int lowestValue = myArray[i]; // grab first value of the comparison group

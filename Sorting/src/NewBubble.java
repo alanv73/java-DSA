@@ -12,8 +12,8 @@ public class NewBubble {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
-//		int[] myArray = {6,3,9,4,7,5};
-		int[] myArray = {1,2,3,4,5,6};
+		int[] myArray = {6,3,9,4,7,5};
+//		int[] myArray = {1,2,3,4,5,6};
 		// keep track of number of passes
 		int numberOfPasses = 0;
 		int numComparisons = 0;

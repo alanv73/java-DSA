@@ -63,7 +63,7 @@ import java.util.Hashtable;
 
 class Sort {
    
-	static enum sortMethod {bubbleSort, selectionSort, insertionSort}; 
+	static enum sortMethod {bubbleSort, selectionSort, insertionSort, chazInsertionSort}; 
 	static enum arrayType {random, reversed, sorted}; 
 	private static Dictionary<arrayType, String> output;
 	private static int timerCounter = 0;
@@ -163,8 +163,9 @@ class Sort {
    }  // end selectionSort()
 //--------------------------------------------------------------
    public void insertionSort() {
-	   int in, out;
-	   for(out=1; out<nElems; out++) {    	// out is dividing line
+	   
+	   int in;
+	   for(int out=1; out<nElems; out++) {    	// out is dividing line
 		   
 		   long temp = a[out];            	// remove marked item
 		   in = out;                      	// start shifts at out
@@ -179,7 +180,35 @@ class Sort {
 		   
 	   }  // end for
    }  // end insertionSort()
- //--------------------------------------------------------------
+//--------------------------------------------------------------
+	public void insertionSortChaz() {
+		
+		for (int j = 0; j < nElems - 1; j++) {
+			
+			long lowest = a[j];
+			int lowestIndex = j;
+			
+			for (int i = j + 1; i < nElems; i++) {
+				
+				if (a[i] < lowest) {
+					lowest = a[i];
+					lowestIndex = i;
+				}
+			} // end i
+			
+			for (int k = lowestIndex; k > j; k--) {
+				
+				a[k] = a[k - 1];
+			} // end k
+			
+			if (j != lowestIndex) {
+
+				a[j] = lowest;
+			}
+			
+		} // end j
+	}
+//--------------------------------------------------------------
    public static void sortTimer(Sort arr, sortMethod sort, arrayType typeOfArray) {
 
 	   timerCounter++;
@@ -204,6 +233,9 @@ class Sort {
 		   case insertionSort:
 			   arr.insertionSort();            // insertion sort them
 			   break;
+		   case chazInsertionSort:
+			   arr.insertionSortChaz();            // Chaz insertion sort them
+			   break;
 	   	}
 		
 		// stop timer
@@ -213,7 +245,7 @@ class Sort {
 		System.out.printf("%10.3f s\n", (end - start)/1000.0);
 		
 		// print a blank line after every third line
-		if ((timerCounter % 3) == 0) {
+		if ((timerCounter % 4) == 0) {
 			
 			timerCounter = 0;
 			System.out.println();
@@ -259,6 +291,10 @@ class SortApp {
 	   Sort revArrI;					// array of reversed elements for Insertion sort
 	   Sort sortedArrI;					// array of sorted elements for Insertion sort
 
+	   Sort arrChazI;
+	   Sort revArrChazI;
+	   Sort sortedArrChazI;
+
 	   arrB = new Sort(maxSize);  		// create the arrays for Bubble sort
 	   revArrB = new Sort(maxSize);
 	   sortedArrB = new Sort(maxSize);
@@ -268,6 +304,9 @@ class SortApp {
 	   arrI = new Sort(maxSize);  		// create the arrays for Insertion sort
 	   revArrI = new Sort(maxSize);
 	   sortedArrI = new Sort(maxSize);
+	   arrChazI = new Sort(maxSize);
+	   revArrChazI = new Sort(maxSize);
+	   sortedArrChazI = new Sort(maxSize);
   
 	   for(int j=0; j<maxSize; j++)	{				// fill first group of arrays with
 	   												// random numbers 
@@ -275,6 +314,7 @@ class SortApp {
 		   	arrB.insert(n);							// (arrays will contain identical random numbers)
 		   	arrS.insert(n);
 		   	arrI.insert(n);
+		   	arrChazI.insert(n);
 	   }
 
 	   for(int j=maxSize-1; j>=0; j--) {			// fill second group of arrays with
@@ -282,6 +322,7 @@ class SortApp {
 		   revArrB.insert(j);						// (arrays will contain identical numbers)
 		   revArrS.insert(j);
 		   revArrI.insert(j);
+		   revArrChazI.insert(j);
 	   }
 
 	   for(int j=0; j<maxSize; j++) {				// fill third group of arrays with
@@ -289,6 +330,7 @@ class SortApp {
 		   sortedArrB.insert(j);					// (arrays will contain identical numbers)
 		   sortedArrS.insert(j);
 		   sortedArrI.insert(j);
+		   sortedArrChazI.insert(j);
 	   }
 
 	   //arr.display();                // display items
@@ -313,17 +355,19 @@ class SortApp {
 	   Sort.sortTimer(arrB, Sort.sortMethod.bubbleSort, Sort.arrayType.random);
 	   Sort.sortTimer(arrS, Sort.sortMethod.selectionSort, Sort.arrayType.random);
 	   Sort.sortTimer(arrI, Sort.sortMethod.insertionSort, Sort.arrayType.random);
-
+	   Sort.sortTimer(arrChazI, Sort.sortMethod.chazInsertionSort, Sort.arrayType.random);
 
 	   // perform the three sorts on the reversed arrays
 	   Sort.sortTimer(revArrB, Sort.sortMethod.bubbleSort, Sort.arrayType.reversed);
 	   Sort.sortTimer(revArrS, Sort.sortMethod.selectionSort, Sort.arrayType.reversed);
 	   Sort.sortTimer(revArrI, Sort.sortMethod.insertionSort, Sort.arrayType.reversed);
+	   Sort.sortTimer(revArrChazI, Sort.sortMethod.chazInsertionSort, Sort.arrayType.reversed);
   
 	   // perform the three sorts on the sorted arrays
 	   Sort.sortTimer(sortedArrB, Sort.sortMethod.bubbleSort, Sort.arrayType.sorted);
 	   Sort.sortTimer(sortedArrS, Sort.sortMethod.selectionSort, Sort.arrayType.sorted);
 	   Sort.sortTimer(sortedArrI, Sort.sortMethod.insertionSort, Sort.arrayType.sorted);
+	   Sort.sortTimer(sortedArrChazI, Sort.sortMethod.chazInsertionSort, Sort.arrayType.sorted);
 
 	   //arr.display();                // display them again
 

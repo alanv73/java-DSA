@@ -1,4 +1,5 @@
 
+
 public class NewSelectionSort {
 
 	public static void main(String[] args) {
@@ -7,19 +8,33 @@ public class NewSelectionSort {
 //		int[] myArray = {6,4,9,2,7,5};
 //		int[] myArray = {3,7,2,5,1,7,7,8,6,9,4,0};
 		int[] myArray = {6,13,9,15,4,7,3,17,12,5,16,2};
-		System.out.println("starting array...");
+		int[] myArray2 = {6,13,9,15,4,7,3,17,12,5,16,2};
+//		int[] myArray = new int[12];
+//
+//		for(int j=0; j<12; j++)	{				// fill first group of arrays with
+//		   int n = (int)( java.lang.Math.random()*(12-1) );
+//		   myArray[j] = n;
+//	    }
+		
+		System.out.println("starting arrays...");
 		PrintArray(myArray);
+		PrintArray(myArray2);
 		System.out.println();
 //		selectionSort(myArray);
+		SelectionSortBreakIfSorted.selectionSort(myArray2);
+		System.out.println();
 //		insertionSort(myArray);
-		insertionSortChaz(myArray);
-		System.out.println("complete...");
+		insertionSort(myArray);
+		System.out.println("completed arrays...");
 		PrintArray(myArray);
+		PrintArray(myArray2);
 
 	}
 
 	private static void insertionSort(int[] myArray) {
 		
+		int copies = 0;
+		int comparisons = 0;
 		
 		for (int i = 1; i < myArray.length; i++) {
 			
@@ -31,8 +46,10 @@ public class NewSelectionSort {
 			
 			while (j > 0 && myArray[j - 1] >= num) {
 				
+				comparisons++;
 				System.out.printf("moving %d from index %d to index %d\n", myArray[j - 1], j - 1, j);
 				myArray[j] = myArray[j - 1];
+				copies++;
 				j--;
 			}
 			
@@ -44,15 +61,23 @@ public class NewSelectionSort {
 			else {
 				
 				System.out.println("no moves made");
+				comparisons++;
 			}
 			
 			PrintArray(myArray);
 			System.out.println();
 		}
+		System.out.printf("%d copy operations performed\n", copies);
+		System.out.printf("%d comparisons made\n", comparisons);
 	}
 	
+	@SuppressWarnings({ "unused" })
 	private static void insertionSortChaz(int[] myArray) {
 		
+		int copies = 0;
+		int comparisons = 0;
+		
+		System.out.println("-Chaz's Insertion Sort");
 		for (int j = 0; j < myArray.length - 1; j++) {
 			
 			int lowest = myArray[j];
@@ -61,6 +86,7 @@ public class NewSelectionSort {
 			
 			for (int i = j + 1; i < myArray.length; i++) {
 				
+				comparisons++;
 				if (myArray[i] < lowest) {
 					lowest = myArray[i];
 					lowestIndex = i;
@@ -72,6 +98,7 @@ public class NewSelectionSort {
 				
 				System.out.printf("shifting %d at index %d to index %d\n", myArray[k - 1], k - 1, k);
 				myArray[k] = myArray[k - 1];
+				copies++;
 			} // end k
 			
 			if (j == lowestIndex) {
@@ -87,6 +114,8 @@ public class NewSelectionSort {
 			System.out.println();
 			
 		} // end j
+		System.out.printf("%d copy operations performed\n", copies);
+		System.out.printf("%d comparisons made\n", comparisons);
 	}
 	
 	private static void selectionSort(int[] myArray) {
