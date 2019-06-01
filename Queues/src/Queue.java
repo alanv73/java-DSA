@@ -2,10 +2,13 @@ import java.util.Arrays;
 
 public class Queue {
 
-	int[] cq;
-	int insertionPoint = 0;
-	int removalPoint = 0;
-	int emptySpace = -1;
+	private int[] cq;
+	private int insertionPoint = 0;
+	private int removalPoint = 0;
+	private int nElems = 0;
+	private int emptySpace = -1;
+	private Boolean full = false;
+	private Boolean empty = true;
 	
 	public Queue(int size) {
 		
@@ -13,45 +16,84 @@ public class Queue {
 		Arrays.fill(cq, -1);
 	}
 	
-	public void add(int number) {
+	public Boolean add(int number) {
 		
-		if (cq[insertionPoint] == -1) {
+		if (!full) {
 			
 			cq[insertionPoint] = number;
 			insertionPoint++;
+			nElems++;
+			empty = false;
+			
+			if (nElems < cq.length) {
+				full = false;
+			}
+			else {
+				full = true;
+			}
 			
 			if (insertionPoint == cq.length) {
 				
 				insertionPoint = 0;
 			}
+			
+			return true;
 		}
 		else {
 			System.out.println("array full");
+			status();
+			printQ();
+			return false;
 		}
 	}
 	
 	public int remove() {
 		
-		if (cq[removalPoint] != -1) {
+		if (!empty) {
 		
 			int out = cq[removalPoint];
 			cq[removalPoint] = emptySpace;
 			removalPoint++;
+			nElems--;
+			full = false;
 			
-			if(removalPoint > cq.length) {
+			if (nElems > 0) {
+				empty = false;
+			}
+			else {
+				empty = true;
+			}
+			
+			if(removalPoint == cq.length) {
 				removalPoint = 0;
 			}
 			
 			return out;
 		}
 		else {
-			System.out.println("array empty");
+			System.out.println("-array empty-");
+			status();
+			printQ();
 			return -1;
 		}
 	}
 	
+	public int Length() {
+		
+		return nElems;
+	}
+	
+	public Boolean isFull() {
+		return full;
+	}
+	
+	public Boolean isEmpty() {
+		return empty;
+	}
+	
 	public void printQ() {
 		
+		System.out.print("Array Contents: ");
 		for (int i : cq) {
 			
 			System.out.printf("%d ", i);
@@ -63,5 +105,6 @@ public class Queue {
 	public void status() {
 		
 		System.out.printf("insertionPoint = %d\nremovalPoint = %d\n", insertionPoint, removalPoint);
+		System.out.printf("isEmpty: %s\nisFull: %s\n", empty, full);
 	}
 }
