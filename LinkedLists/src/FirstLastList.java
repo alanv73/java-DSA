@@ -47,33 +47,41 @@ public class FirstLastList {
 	
 	// delete from beginning
 	public void deleteTop() {
-	// if we are at the end
-		if(firstPerson.nextPerson == null) {
-			lastPerson = null;
+		if (firstPerson != null) {
+			// if we are at the end
+			if(firstPerson.nextPerson == null) {
+				lastPerson = null;
+			}
+			
+			firstPerson = firstPerson.nextPerson;
 		}
-		
-		firstPerson = firstPerson.nextPerson;
 	}
 
 	// delete from end
 	public void deleteBottom() {
-	// if we are at the end
-		if(firstPerson.nextPerson == null) {
-			firstPerson = null;
-		}
-		else {
-			Person currentPerson = firstPerson;
-			
-			while (currentPerson.nextPerson != lastPerson) {
+		// if the First Last List is not empty
+		if (firstPerson != null) {
+			// if we are at the end (there is only one)
+			if(firstPerson.nextPerson == null) {
+				firstPerson = null;
+			} // if (firstPerson.nextPerson == null) 
+			else { // not at the end
+				Person currentPerson = firstPerson;
 				
-				currentPerson = currentPerson.nextPerson;
-			}
-			
-			currentPerson.nextPerson = null;
-			lastPerson = currentPerson;
-		}
-		
-	}
+				// until we hit the *next to last* person
+				while (currentPerson.nextPerson != lastPerson) { 
+					
+					currentPerson = currentPerson.nextPerson;
+				} // while (currentPerson.nextPerson != lastPerson) 
+				
+				// currentPerson is now the *next to last* person
+				// set currentPerson to lastPerson by setting nextPerson
+				// to null and setting lastPerson of List to currentPerson
+				currentPerson.nextPerson = null;
+				this.lastPerson = currentPerson;
+			} // else
+		} // outer if (firstPerson != null)
+	} // deleteBottom method
 
 	public void displayFirstLastList() {
 		// currentPerson will change; firstPerson will not (when displaying)

@@ -11,11 +11,12 @@ public class Person {
 	}
 	
 	public void displayPerson() {
-		System.out.println("Person\t- memory address: " + this);
-		System.out.println("\t- name: " + this.name);
-		System.out.println("\t- nextPerson: " + this.nextPerson);
+		System.out.println("Person:\t- " + this.name);
 		if (this.nextPerson != null) {
-			System.out.println("\t\t- nextPerson name: " + this.nextPerson.name);
+			System.out.println("\t- nextPerson: " + this.nextPerson.name);
+		}
+		else {
+			System.out.println("\t- nextPerson: " + this.nextPerson);
 		}
 		System.out.println();
 	}
